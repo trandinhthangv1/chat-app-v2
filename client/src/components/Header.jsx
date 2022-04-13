@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Flex,
   Heading,
@@ -47,6 +48,12 @@ const Header = () => {
         <Stack direction={['column', 'row']} spacing='10px'>
           <Box display='flex' alignItems='center' cursor='pointer'>
             {/* <Avatar name={user?.name} src={user?.picture} size='sm' mr={2} /> */}
+            <Avatar
+              name=''
+              src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
+              size='sm'
+              mr={2}
+            />
             <Text fontSize='sm' fontWeight='bold'>
               {/* {user?.name} */}
             </Text>
