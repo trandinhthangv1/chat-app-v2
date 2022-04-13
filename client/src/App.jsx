@@ -1,32 +1,18 @@
-import React, { useState } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import Home from './Home';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import ChatPage from './pages/ChatPage';
 
 const App = () => {
   return (
-    <div>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='/about'>About</Link>
-            </li>
-            <li>
-              <Link to='/users'>Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path='/' exact>
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </div>
+    <Switch>
+      <Route path='/chat'>
+        <ChatPage />
+      </Route>
+      <Route path='/' exact>
+        <LoginPage />
+      </Route>
+    </Switch>
   );
 };
 
