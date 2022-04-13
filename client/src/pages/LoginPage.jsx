@@ -16,7 +16,7 @@ import SignUp from '../components/Auth/SignUp';
 const LoginPage = () => {
   return (
     <Container maxW='container.xl' centerContent>
-      <Box w='35%' maxW='3xl' justifyContent='center' p={3} m='40px 0 15px 0'>
+      <Box w='40%' maxW='3xl' justifyContent='center' p={3} m='40px 0 15px 0'>
         <Box d='flex' alignItems='center'>
           <Image
             src='https://pro-theme.com/html/teamhost/assets/img/logo-big.png'

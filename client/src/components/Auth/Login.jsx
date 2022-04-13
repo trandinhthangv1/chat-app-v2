@@ -53,8 +53,8 @@ const Login = () => {
         position: 'top-right',
       });
       setLoading(false);
-      setUser(data.data);
-      localStorage.setItem('chat-app-user', JSON.stringify(data.data));
+      // setUser(data.data);
+      // localStorage.setItem('chat-app-user', JSON.stringify(data.data));
       history.push('/chat');
       return;
     }
