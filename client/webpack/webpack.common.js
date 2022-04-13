@@ -21,10 +21,14 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '..', './build'),
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './src/index.html'),
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
