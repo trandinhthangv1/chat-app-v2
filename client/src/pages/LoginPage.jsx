@@ -19,7 +19,7 @@ const LoginPage = () => {
       <Box w='40%' maxW='3xl' justifyContent='center' p={3} m='40px 0 15px 0'>
         <Box d='flex' alignItems='center'>
           <Image
-            src='https://pro-theme.com/html/teamhost/assets/img/logo-big.png'
+            src='https://res.cloudinary.com/dlgi1yqxd/image/upload/v1649866058/Chat-app/logo-chatchit.png'
             maxH={45}
             alt='Logo'
             animation='navspinv 2.4s infinite linear'
