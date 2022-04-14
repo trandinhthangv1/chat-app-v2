@@ -52,14 +52,14 @@ const UserList = () => {
                 src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
                 size='md'
               />
-              <Box>
-                <Text>Ten</Text>
-                <Text>Tin nhan moi nhat</Text>
+              <Box ml={2}>
+                <Text fontSize='md'>Ten</Text>
+                <Text fontSize='sm'>Tin nhan moi nhat</Text>
               </Box>
             </Box>
             <Box>
-              <Text>Date</Text>
-              <Text>time</Text>
+              <Text fontSize='sm'>7h</Text>
+              <Text fontSize='smaller'>Đã nhận</Text>
             </Box>
           </Box>
         ))}

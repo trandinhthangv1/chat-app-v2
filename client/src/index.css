@@ -21,7 +21,6 @@ body {
 }
 .custom-scrollbar {
   overflow-y: auto;
-  max-height: calc(100vh - 55px);
 }
 
 button.button {
