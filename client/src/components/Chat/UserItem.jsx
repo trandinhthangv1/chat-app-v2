@@ -13,6 +13,7 @@ const UserItem = ({ item }) => {
       p={4}
       backgroundColor={item === 1 && '#f5f5f5'}
       my={1}
+      cursor='pointer'
     >
       <Box d='flex' alignItems='center'>
         <Avatar
