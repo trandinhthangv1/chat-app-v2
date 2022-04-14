@@ -1,7 +1,8 @@
-const express = require('express');
+import 'dotenv/config';
+import mongoDb from './config/MongoDb.js';
+import app from './app.js';
 
-const app = express();
+mongoDb.connect();
 
-app.get('/hello', (req, res) => res.send('Hello world'));
-
-app.listen(process.env.PORT || 3000, () => console.log('starting server'));
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
