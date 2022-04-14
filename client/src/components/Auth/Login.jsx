@@ -8,11 +8,10 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import loginUserApi from '../../services/auth/loginUser';
-
-// import { ChatContext } from '../../context/ChatProvider';
+import { ChatContext } from '../../context/ChatProvider';
 
 const Login = () => {
   const [values, setValues] = useState({ email: '', password: '' });
@@ -20,7 +19,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const history = useHistory();
-  // const { setUser } = useContext(ChatContext);
+  const { setUser } = useContext(ChatContext);
 
   const handleToggle = () => setShow(!show);
 
@@ -53,8 +52,8 @@ const Login = () => {
         position: 'top-right',
       });
       setLoading(false);
-      // setUser(data.data);
-      // localStorage.setItem('chat-app-user', JSON.stringify(data.data));
+      setUser(data.data);
+      localStorage.setItem('chat-app-user', JSON.stringify(data.data));
       history.push('/chat');
       return;
     }

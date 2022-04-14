@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Avatar, Box } from '@chakra-ui/react';
 import UserItem from './UserItem';
 import UserSearch from './UserSearch';
+import { ChatContext } from '../../context/ChatProvider';
 
 const UserList = () => {
+  const { user } = useContext(ChatContext);
+
   return (
     <Box minH='100%' bg='#fff' borderRadius={8} w='30%'>
       <Box d='flex' alignItems='center' p={5} pos='relative'>
-        <Avatar
-          name=''
-          src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
-          size='sm'
-        />
+        <Avatar name={user?.name} src={user?.picture} size='sm' />
         <UserSearch />
       </Box>
       <Box

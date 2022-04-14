@@ -9,14 +9,14 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { HiAnnotation, HiBell, HiOutlineLogout } from 'react-icons/hi';
 import { IoLogoSnapchat } from 'react-icons/io';
-// import { ChatContext } from '../context/ChatProvider';
+import { ChatContext } from '../context/ChatProvider';
 import { useHistory } from 'react-router-dom';
 
 const Header = () => {
-  // const { user, setUser } = useContext(ChatContext);
+  const { user, setUser } = useContext(ChatContext);
   const history = useHistory();
 
   const handleLogout = () => {
@@ -47,15 +47,9 @@ const Header = () => {
       <Box p='4' display='flex' alignItems='center'>
         <Stack direction={['column', 'row']} spacing='10px'>
           <Box display='flex' alignItems='center' cursor='pointer'>
-            {/* <Avatar name={user?.name} src={user?.picture} size='sm' mr={2} /> */}
-            <Avatar
-              name=''
-              src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
-              size='sm'
-              mr={2}
-            />
+            <Avatar name={user?.name} src={user?.picture} size='sm' mr={2} />
             <Text fontSize='sm' fontWeight='bold'>
-              {/* {user?.name} */}
+              {user?.name}
             </Text>
           </Box>
           <Box display='flex' alignItems='center' pos='relative'>

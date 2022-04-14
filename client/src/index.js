@@ -4,12 +4,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import theme from './themes';
+import ChatProvider from './context/ChatProvider';
 
 ReactDOM.render(
   <Router>
-    <ChakraProvider theme={theme}>
-      <App />
-    </ChakraProvider>
+    <ChatProvider>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </ChatProvider>
   </Router>,
   document.getElementById('root')
 );

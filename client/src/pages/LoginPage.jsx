@@ -9,11 +9,20 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Login from '../components/Auth/Login';
 import SignUp from '../components/Auth/SignUp';
+import { ChatContext } from '../context/ChatProvider';
 
 const LoginPage = () => {
+  const history = useHistory();
+  const { user } = useContext(ChatContext);
+
+  useEffect(() => {
+    if (user) history.push('/chat');
+  }, [history, user]);
+
   return (
     <Container maxW='container.xl' centerContent>
       <Box w='40%' maxW='3xl' justifyContent='center' p={3} m='40px 0 15px 0'>
@@ -29,7 +38,7 @@ const LoginPage = () => {
               Xin chào, We are Vuichatchit
             </Text>
             <Text fontSize='md' color='gray.600'>
-              Welcome to chitchat please login to your account.
+              Welcome to chitchat please login to your account
             </Text>
           </Box>
         </Box>
