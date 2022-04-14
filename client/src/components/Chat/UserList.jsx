@@ -1,14 +1,13 @@
+import React from 'react';
 import {
   Avatar,
   Box,
-  Heading,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
   Text,
 } from '@chakra-ui/react';
-import React from 'react';
 import { RiSearch2Line } from 'react-icons/ri';
 
 const UserList = () => {

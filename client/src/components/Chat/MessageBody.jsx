@@ -1,6 +1,6 @@
-import ScrollableFeed from 'react-scrollable-feed';
-import { Box, Button, Heading } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { Box, Heading } from '@chakra-ui/react';
+import ScrollableFeed from 'react-scrollable-feed';
 
 const MessageBody = () => {
   const [state, setState] = useState([1]);

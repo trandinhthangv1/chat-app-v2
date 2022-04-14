@@ -1,20 +1,15 @@
+import React from 'react';
 import {
-  Avatar,
-  AvatarBadge,
   Box,
   Icon,
   Input,
   InputGroup,
-  InputLeftElement,
   InputRightElement,
-  Text,
 } from '@chakra-ui/react';
-import React from 'react';
-import { AiOutlineAudio, AiTwotonePhone } from 'react-icons/ai';
-import { HiBell, HiVideoCamera } from 'react-icons/hi';
-import { FiSend } from 'react-icons/fi';
-import { IoIosSend, IoMdImages } from 'react-icons/io';
+import { AiOutlineAudio } from 'react-icons/ai';
 import { FaRegSmileWink } from 'react-icons/fa';
+import { FiSend } from 'react-icons/fi';
+import { IoMdImages } from 'react-icons/io';
 
 const MessageFooter = () => {
   return (

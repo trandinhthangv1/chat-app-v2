@@ -1,5 +1,5 @@
-import { Avatar, AvatarBadge, Box, Icon, Text } from '@chakra-ui/react';
 import React from 'react';
+import { Avatar, AvatarBadge, Box, Icon, Text } from '@chakra-ui/react';
 import { AiTwotonePhone } from 'react-icons/ai';
 import { HiBell, HiVideoCamera } from 'react-icons/hi';
 import { RiMoreFill } from 'react-icons/ri';
