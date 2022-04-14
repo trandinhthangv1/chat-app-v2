@@ -6,13 +6,40 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Skeleton,
   Text,
 } from '@chakra-ui/react';
 import { RiSearch2Line } from 'react-icons/ri';
 import { AiTwotoneMessage } from 'react-icons/ai';
+import searchUserApi from '../../services/user/search';
 
 const UserSearch = () => {
-  const [state, setState] = useState(false);
+  const [isHoverSearch, setHoverSearch] = useState(false);
+  const [search, setSearch] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleSendSearch = async (event) => {
+    if (event.key === 'Enter' && search) {
+      setLoading(true);
+      try {
+        const { data, status } = await searchUserApi(search);
+        if (status === 200) {
+          setSearchResult(data.data);
+          return;
+        }
+      } catch (error) {
+        console.log('error', error);
+      }
+      setLoading(false);
+    }
+  };
+
+  const handleClickItem = (id) => {
+    console.log('id', id);
+    setHoverSearch(false);
+  };
+
   return (
     <>
       <InputGroup ml={5}>
@@ -24,7 +51,10 @@ const UserSearch = () => {
           placeholder='Tìm kiếm bạn bè'
           borderRadius={25}
           focusBorderColor='none'
-          onFocus={() => setState(true)}
+          onFocus={() => setHoverSearch(true)}
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          onKeyDown={handleSendSearch}
         />
       </InputGroup>
       <Box
@@ -33,8 +63,8 @@ const UserSearch = () => {
         left={0}
         zIndex={1}
         w='100%'
-        opacity={state ? '1' : '0'}
-        h={state ? 'calc(100vh - 250px)' : '0'}
+        opacity={isHoverSearch ? '1' : '0'}
+        h={isHoverSearch ? 'calc(100vh - 250px)' : '0'}
         transition='all 0.5s ease-in-out'
       >
         <Box
@@ -46,39 +76,43 @@ const UserSearch = () => {
           overflowY='auto'
           className='custom-scrollbar'
         >
-          {[1, 2, 3, 4, 4, 5, 6, 4, 4, 5, 6].map((item) => (
-            <Box
-              d='flex'
-              justifyContent='space-between'
-              mb={7}
-              alignItems='center'
-              cursor='pointer'
-              m={3}
-              _hover={{ bg: '#f5f5f5' }}
-              borderRadius={8}
-            >
-              <Box d='flex' alignItems='center' m={2}>
-                <Avatar
-                  name=''
-                  src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
-                  size='md'
-                />
-                <Box ml={2}>
-                  <Text fontSize='md'>Ten</Text>
-                  <Text fontSize='13px'>thang@gmail.com</Text>
+          {loading
+            ? [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                <Box key={item} borderRadius={8} m={3}>
+                  <Skeleton height='70px' />
                 </Box>
-              </Box>
-              <Box>
-                <Icon
-                  as={AiTwotoneMessage}
-                  w={4}
-                  h={4}
-                  color='#646464'
-                  mr={2}
-                />
-              </Box>
-            </Box>
-          ))}
+              ))
+            : searchResult.map((user) => (
+                <Box
+                  d='flex'
+                  justifyContent='space-between'
+                  mb={7}
+                  alignItems='center'
+                  cursor='pointer'
+                  m={3}
+                  _hover={{ bg: '#f5f5f5' }}
+                  borderRadius={8}
+                  key={user._id}
+                  onClick={() => handleClickItem(user._id)}
+                >
+                  <Box d='flex' alignItems='center' m={2}>
+                    <Avatar name={user.name} src={user.picture} size='md' />
+                    <Box ml={2}>
+                      <Text fontSize='md'>{user.name}</Text>
+                      <Text fontSize='13px'>{user.email}</Text>
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Icon
+                      as={AiTwotoneMessage}
+                      w={4}
+                      h={4}
+                      color='#646464'
+                      mr={2}
+                    />
+                  </Box>
+                </Box>
+              ))}
         </Box>
       </Box>
     </>
