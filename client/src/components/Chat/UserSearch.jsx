@@ -21,9 +21,10 @@ const UserSearch = () => {
 
   const handleSendSearch = async (event) => {
     if (event.key === 'Enter' && search) {
-      setLoading(true);
       try {
+        setLoading(true);
         const { data, status } = await searchUserApi(search);
+        setLoading(false);
         if (status === 200) {
           setSearchResult(data.data);
           return;
@@ -31,12 +32,12 @@ const UserSearch = () => {
       } catch (error) {
         console.log('error', error);
       }
-      setLoading(false);
     }
   };
 
   const handleClickItem = (id) => {
     console.log('id', id);
+    setSearch('');
     setHoverSearch(false);
   };
 
