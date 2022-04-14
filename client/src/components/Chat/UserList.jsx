@@ -1,66 +1,26 @@
-import React from 'react';
-import {
-  Avatar,
-  Box,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Text,
-} from '@chakra-ui/react';
-import { RiSearch2Line } from 'react-icons/ri';
+import React, { useState } from 'react';
+import { Avatar, Box } from '@chakra-ui/react';
+import UserItem from './UserItem';
+import UserSearch from './UserSearch';
 
 const UserList = () => {
   return (
     <Box minH='100%' bg='#fff' borderRadius={8} w='30%'>
-      <Box d='flex' alignItems='center' p={5}>
+      <Box d='flex' alignItems='center' p={5} pos='relative'>
         <Avatar
           name=''
           src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
           size='sm'
         />
-        <InputGroup ml={5}>
-          <InputLeftElement
-            pointerEvents='none'
-            children={<Icon as={RiSearch2Line} color='#A0AEC0' />}
-          />
-          <Input
-            placeholder='Tìm kiếm bạn bè'
-            borderRadius={25}
-            focusBorderColor='none'
-          />
-        </InputGroup>
+        <UserSearch />
       </Box>
       <Box
-        mt={5}
         maxH='calc(100vh - 250px)'
         overflowY='auto'
         className='custom-scrollbar'
-        px={5}
       >
         {[1, 2, 3, 4, 4, 5, 6, 4, 4, 5, 6].map((item) => (
-          <Box
-            d='flex'
-            justifyContent='space-between'
-            mb={7}
-            alignItems='center'
-          >
-            <Box d='flex' alignItems='center'>
-              <Avatar
-                name=''
-                src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
-                size='md'
-              />
-              <Box ml={2}>
-                <Text fontSize='md'>Ten</Text>
-                <Text fontSize='sm'>Tin nhan moi nhat</Text>
-              </Box>
-            </Box>
-            <Box>
-              <Text fontSize='sm'>7h</Text>
-              <Text fontSize='smaller'>Đã nhận</Text>
-            </Box>
-          </Box>
+          <UserItem item={item} />
         ))}
       </Box>
     </Box>
