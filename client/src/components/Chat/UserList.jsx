@@ -9,6 +9,7 @@ const UserList = () => {
   const { user, chats, setChats } = useContext(ChatContext);
 
   useEffect(() => {
+    if (!user) return;
     const fetchAllChat = async () => {
       try {
         const { data, status } = await fetchAllChatApi();

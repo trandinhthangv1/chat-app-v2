@@ -7,11 +7,18 @@ import MessageFooter from './MessageFooter';
 import sendMessageApi from '../../services/message/send';
 import getAllMessageByIdApi from '../../services/message/getAllMessageById';
 import { ChatContext } from '../../context/ChatProvider';
+import { io } from 'socket.io-client';
+import { ENDPOINT } from '../../services';
+let socket;
 
 const MessageBox = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-  const { selectedChat } = useContext(ChatContext);
+  const { selectedChat, user } = useContext(ChatContext);
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+  }, []);
 
   useEffect(() => {
     if (!selectedChat) return;
@@ -21,6 +28,7 @@ const MessageBox = () => {
         const { data, status } = await getAllMessageByIdApi(selectedChat._id);
         if (status === 200) {
           setMessages(data.data);
+          socket.emit('client-join-chat', selectedChat._id);
         }
       } catch (error) {
         console.log('error', error);
@@ -28,6 +36,12 @@ const MessageBox = () => {
     };
     getAllMessage();
   }, [selectedChat]);
+
+  useEffect(() => {
+    socket.on('server-send-message', (message) => {
+      setMessages([...messages, message]);
+    });
+  });
 
   const sendMessage = async (event) => {
     if (!newMessage || event.key !== 'Enter') return;
@@ -40,6 +54,7 @@ const MessageBox = () => {
       if (status === 200) {
         setNewMessage('');
         setMessages([...messages, data.data]);
+        socket.emit('client-send-message', data.data);
       }
     } catch (error) {
       console.log('error', error);
