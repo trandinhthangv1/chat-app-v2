@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Avatar, Box, Text } from '@chakra-ui/react';
 import { ChatContext } from '../../context/ChatProvider';
+import { getSender } from '../../utils/userLogic';
 
 const UserItem = ({ chat }) => {
-  const { selectedChat, setSelectedChat } = useContext(ChatContext);
-  const friend = chat.users[1];
-
+  const { user, selectedChat, setSelectedChat } = useContext(ChatContext);
+  const friend = getSender(user, chat.users);
+  console.log('friend', friend);
   return (
     <Box
       d='flex'
