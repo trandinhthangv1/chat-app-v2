@@ -12,15 +12,24 @@ const MessageBody = ({ messages }) => {
           <ScrollableFeed className='custom-scrollbar'>
             <Box mx={5} mt={20}>
               {messages.map((message) => (
-                <Box my={5} key={message._id}>
-                  <Heading
-                    size='sm'
-                    textAlign={
-                      message.sender._id === user._id ? 'end' : 'start'
-                    }
+                <Box
+                  mb={2}
+                  key={message._id}
+                  d='flex'
+                  justifyContent={
+                    message.sender._id === user._id ? 'end' : 'start'
+                  }
+                >
+                  <Box
+                    d='inline-block'
+                    bg={message.sender._id === user._id ? '#F46119' : '#f5f5f5'}
+                    color={message.sender._id === user._id ? '#fff' : '#353535'}
+                    px={3}
+                    py={2}
+                    borderRadius={20}
                   >
-                    {message.content}
-                  </Heading>
+                    <Heading size='sm'>{message.content}</Heading>
+                  </Box>
                 </Box>
               ))}
             </Box>

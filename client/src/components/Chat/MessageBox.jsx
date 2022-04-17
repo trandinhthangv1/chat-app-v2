@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Icon, Text } from '@chakra-ui/react';
+import { IoLogoSnapchat } from 'react-icons/io';
 import MessageHead from './MessageHead';
 import MessageBody from './MessageBody';
 import MessageFooter from './MessageFooter';
@@ -62,7 +63,10 @@ const MessageBox = () => {
           w='100%'
           h='100%'
         >
-          <Text fontWeight='bold'>Trò chuyện cùng với mọi người! {'<3'}</Text>
+          <Text fontWeight='bold'>Trò chuyện cùng với mọi người! </Text>
+          <Box animation='navspinv 2.4s infinite linear' ml={2}>
+            <Icon as={IoLogoSnapchat} color='#f46119' />
+          </Box>
         </Box>
       ) : (
         <>

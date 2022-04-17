@@ -1,7 +1,7 @@
 import {
   Box,
   Container,
-  Image,
+  Icon,
   Tab,
   TabList,
   TabPanel,
@@ -10,6 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useContext, useEffect } from 'react';
+import { IoLogoSnapchat } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
 import Login from '../components/Auth/Login';
 import SignUp from '../components/Auth/SignUp';
@@ -27,12 +28,9 @@ const LoginPage = () => {
     <Container maxW='container.xl' centerContent>
       <Box w='40%' maxW='3xl' justifyContent='center' p={3} m='40px 0 15px 0'>
         <Box d='flex' alignItems='center'>
-          <Image
-            src='https://res.cloudinary.com/dlgi1yqxd/image/upload/v1649866058/Chat-app/logo-chatchit.png'
-            maxH={45}
-            alt='Logo'
-            animation='navspinv 2.4s infinite linear'
-          />
+          <Box animation='navspinv 2.4s infinite linear' ml={2}>
+            <Icon as={IoLogoSnapchat} color='#f46119' />
+          </Box>
           <Box ml='5'>
             <Text fontSize='xl' fontWeight='bold'>
               Xin chào, We are Vuichatchit
