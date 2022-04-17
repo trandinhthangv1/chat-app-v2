@@ -15,7 +15,9 @@ class AuthMiddleware {
 
       const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
       const user = await User.findById(decoded.userId).select('-password');
-
+      if (!user) {
+        throw { statusCode: 401, message: MIDDLEWARE_MESSAGE.not_found_user };
+      }
       req.user = user;
       next();
     } catch (error) {
