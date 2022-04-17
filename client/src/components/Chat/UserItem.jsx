@@ -6,7 +6,6 @@ import { getSender } from '../../utils/userLogic';
 const UserItem = ({ chat }) => {
   const { user, selectedChat, setSelectedChat } = useContext(ChatContext);
   const friend = getSender(user, chat.users);
-  console.log('friend', friend);
   return (
     <Box
       d='flex'
