@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Avatar, AvatarBadge, Box, Icon, Text } from '@chakra-ui/react';
 import { AiTwotonePhone } from 'react-icons/ai';
 import { HiBell, HiVideoCamera } from 'react-icons/hi';
 import { RiMoreFill } from 'react-icons/ri';
+import { getSender } from '../../utils/userLogic';
+import { ChatContext } from '../../context/ChatProvider';
 
 const MessageHead = () => {
+  const { user, selectedChat } = useContext(ChatContext);
+
+  const friend = getSender(user, selectedChat.users);
+
   return (
     <Box h='8%' borderBottom='1px solid #e2e2e2'>
       <Box
@@ -15,15 +21,11 @@ const MessageHead = () => {
         mx={5}
       >
         <Box d='flex' alignItems='center'>
-          <Avatar
-            name=''
-            src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
-            size='md'
-          >
+          <Avatar name={friend.name} src={friend.picture} size='md'>
             <AvatarBadge boxSize='0.75em' bg='green' />
           </Avatar>
           <Box ml={3}>
-            <Text fontWeight='bold'>Ten</Text>
+            <Text fontWeight='bold'>{friend.name}</Text>
             <Text fontSize='small'>Đang hoạt động</Text>
           </Box>
         </Box>

@@ -11,7 +11,7 @@ import { FaRegSmileWink } from 'react-icons/fa';
 import { FiSend } from 'react-icons/fi';
 import { IoMdImages } from 'react-icons/io';
 
-const MessageFooter = () => {
+const MessageFooter = ({ newMessage, setNewMessage, sendMessage }) => {
   return (
     <Box h='10%' borderTop='1px solid #e2e2e2'>
       <Box
@@ -37,7 +37,9 @@ const MessageFooter = () => {
               placeholder='Nhập tin nhắn'
               borderRadius={25}
               focusBorderColor='none'
-              onChange={() => console.log('hello2')}
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              onKeyDown={sendMessage}
             />
           </InputGroup>
         </Box>
