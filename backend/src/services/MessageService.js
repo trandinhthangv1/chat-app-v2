@@ -4,7 +4,11 @@ import User from '../models/User.js';
 class MessageService {
   async send({ chat, sender, content }) {
     let message = await Message.create({ chat, sender, content });
-    await message.populate([{ path: 'sender', select: 'name picture' }]);
+    await message.populate([
+      { path: 'sender', select: 'name picture' },
+      { path: 'chat' },
+    ]);
+
     message = await User.populate(message, {
       path: 'chat.users',
       select: 'name picture email',
