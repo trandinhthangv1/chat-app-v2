@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useContext, useEffect } from 'react';
-import { IoLogoSnapchat } from 'react-icons/io';
+import { GiGhost } from 'react-icons/gi';
 import { useHistory } from 'react-router-dom';
 import Login from '../components/Auth/Login';
 import SignUp from '../components/Auth/SignUp';
@@ -29,7 +29,7 @@ const LoginPage = () => {
       <Box w='40%' maxW='3xl' justifyContent='center' p={3} m='40px 0 15px 0'>
         <Box d='flex' alignItems='center'>
           <Box animation='navspinv 2.4s infinite linear' ml={2}>
-            <Icon as={IoLogoSnapchat} color='#f46119' />
+            <Icon as={GiGhost} color='#f46119' fontSize='larger' />
           </Box>
           <Box ml='5'>
             <Text fontSize='xl' fontWeight='bold'>

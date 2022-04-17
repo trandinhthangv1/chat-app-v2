@@ -6,13 +6,18 @@ import './index.css';
 import theme from './themes';
 import ChatProvider from './context/ChatProvider';
 
-ReactDOM.render(
-  <Router>
-    <ChatProvider>
-      <ChakraProvider theme={theme}>
-        <App />
-      </ChakraProvider>
-    </ChatProvider>
-  </Router>,
-  document.getElementById('root')
-);
+if (window.screen.width < 768) {
+  document.getElementById('root').innerText =
+    'Hiện tại chỉ hỗ trợ trên tablet và desktop';
+} else {
+  ReactDOM.render(
+    <Router>
+      <ChatProvider>
+        <ChakraProvider theme={theme}>
+          <App />
+        </ChakraProvider>
+      </ChatProvider>
+    </Router>,
+    document.getElementById('root')
+  );
+}

@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import { HiAnnotation, HiBell, HiOutlineLogout } from 'react-icons/hi';
-import { IoLogoSnapchat } from 'react-icons/io';
+import { GiGhost } from 'react-icons/gi';
 import { ChatContext } from '../context/ChatProvider';
 import { useHistory } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ const Header = () => {
       <Box p='4' color='#353535' fontWeight='bold' d='flex' alignItems='center'>
         <Heading size='md'>Vui Chat Chit</Heading>
         <Box animation='navspinv 2.4s infinite linear' ml={2}>
-          <Icon as={IoLogoSnapchat} color='#f46119' />
+          <Icon as={GiGhost} color='#f46119' fontSize='larger' />
         </Box>
       </Box>
       <Spacer />

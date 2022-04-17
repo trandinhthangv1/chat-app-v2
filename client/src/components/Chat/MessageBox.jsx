@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Box, Icon, Text } from '@chakra-ui/react';
-import { IoLogoSnapchat } from 'react-icons/io';
+import { GiGhost } from 'react-icons/gi';
 import MessageHead from './MessageHead';
 import MessageBody from './MessageBody';
 import MessageFooter from './MessageFooter';
@@ -9,6 +9,7 @@ import getAllMessageByIdApi from '../../services/message/getAllMessageById';
 import { ChatContext } from '../../context/ChatProvider';
 import { io } from 'socket.io-client';
 import { ENDPOINT } from '../../services';
+
 let socket;
 
 const MessageBox = () => {
@@ -80,7 +81,7 @@ const MessageBox = () => {
         >
           <Text fontWeight='bold'>Trò chuyện cùng với mọi người! </Text>
           <Box animation='navspinv 2.4s infinite linear' ml={2}>
-            <Icon as={IoLogoSnapchat} color='#f46119' />
+            <Icon as={GiGhost} color='#f46119' fontSize='larger' />
           </Box>
         </Box>
       ) : (
