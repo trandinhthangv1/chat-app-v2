@@ -16,12 +16,13 @@ import { ChatContext } from '../context/ChatProvider';
 import { useHistory } from 'react-router-dom';
 
 const Header = () => {
-  const { user, setUser } = useContext(ChatContext);
+  const { user, setUser, setSelectedChat } = useContext(ChatContext);
   const history = useHistory();
 
   const handleLogout = () => {
     localStorage.removeItem('chat-app-user');
     setUser(null);
+    setSelectedChat(null);
     history.push('/');
   };
 
