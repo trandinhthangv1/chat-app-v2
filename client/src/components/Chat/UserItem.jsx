@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Avatar, Box, Text } from '@chakra-ui/react';
+import { ChatContext } from '../../context/ChatProvider';
 
-const UserItem = ({ item }) => {
+const UserItem = ({ chat }) => {
+  const { selectedChat, setSelectedChat } = useContext(ChatContext);
+  const friend = chat.users[1];
+
   return (
     <Box
       d='flex'
@@ -11,19 +15,16 @@ const UserItem = ({ item }) => {
       borderRadius={8}
       mx={3}
       p={4}
-      backgroundColor={item === 1 && '#f5f5f5'}
+      backgroundColor={chat._id === selectedChat?._id && '#f5f5f5'}
       my={1}
       cursor='pointer'
+      onClick={() => setSelectedChat(chat)}
     >
       <Box d='flex' alignItems='center'>
-        <Avatar
-          name=''
-          src='https://pro-theme.com/html/teamhost/assets/img/profile.png'
-          size='md'
-        />
+        <Avatar name={friend.name} src={friend.picture} size='md' />
         <Box ml={2}>
-          <Text fontSize='md'>Ten</Text>
-          <Text fontSize='13px'>Tin nhan moi nhat</Text>
+          <Text fontSize='md'>{friend.name}</Text>
+          <Text fontSize='13px'>Tin nhắn mới nhất</Text>
         </Box>
       </Box>
       <Box>

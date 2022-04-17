@@ -1,11 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Avatar, Box } from '@chakra-ui/react';
 import UserItem from './UserItem';
 import UserSearch from './UserSearch';
 import { ChatContext } from '../../context/ChatProvider';
+import fetchAllChatApi from '../../services/chat/fetchAll';
 
 const UserList = () => {
-  const { user } = useContext(ChatContext);
+  const { user, chats, setChats } = useContext(ChatContext);
+
+  useEffect(() => {
+    const fetchAllChat = async () => {
+      try {
+        const { data, status } = await fetchAllChatApi();
+        if (status === 200) setChats(data.data);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+    fetchAllChat();
+  }, []);
 
   return (
     <Box minH='100%' bg='#fff' borderRadius={8} w='30%'>
@@ -18,8 +31,8 @@ const UserList = () => {
         overflowY='auto'
         className='custom-scrollbar'
       >
-        {[1, 2, 3, 4, 4, 5, 6, 4, 4, 5, 6].map((item) => (
-          <UserItem item={item} />
+        {chats.map((chat) => (
+          <UserItem key={chat._id} chat={chat} />
         ))}
       </Box>
     </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Avatar,
   Box,
@@ -12,12 +12,15 @@ import {
 import { RiSearch2Line } from 'react-icons/ri';
 import { AiTwotoneMessage } from 'react-icons/ai';
 import searchUserApi from '../../services/user/search';
+import accessChatApi from '../../services/chat/access';
+import { ChatContext } from '../../context/ChatProvider';
 
 const UserSearch = () => {
   const [isHoverSearch, setHoverSearch] = useState(false);
   const [search, setSearch] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { setSelectedChat, chats, setChats } = useContext(ChatContext);
 
   const handleSendSearch = async (event) => {
     if (event.key === 'Enter' && search) {
@@ -35,10 +38,21 @@ const UserSearch = () => {
     }
   };
 
-  const handleClickItem = (id) => {
-    console.log('id', id);
-    setSearch('');
-    setHoverSearch(false);
+  const handleClickItem = async (id) => {
+    try {
+      const { data, status } = await accessChatApi(id);
+      if (status === 200) {
+        const hasExistChat = chats.some((chat) => chat._id === data.data._id);
+        if (!hasExistChat) {
+          setChats([data.data, ...chats]);
+        }
+        setSelectedChat(data.data);
+        setSearch('');
+        setHoverSearch(false);
+      }
+    } catch (error) {
+      console.log('error', error);
+    }
   };
 
   return (
