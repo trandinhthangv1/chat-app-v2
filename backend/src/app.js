@@ -6,6 +6,9 @@ import AuthService from './services/AuthService.js';
 import UserService from './services/UserService.js';
 import UserController from './controllers/UserController.js';
 import UserRoute from './routes/v1/UserRoute.js';
+import ChatService from './services/ChatService.js';
+import ChatController from './controllers/ChatController.js';
+import ChatRoute from './routes/v1/ChatRoute.js';
 import AuthMiddleware from './middlewares/AuthMiddleware.js';
 
 class App {
@@ -15,6 +18,7 @@ class App {
     this.authMiddleware = new AuthMiddleware();
     this.configAuthRoute();
     this.configUserRoute();
+    this.configChatRoute();
     this.config();
   }
 
@@ -34,6 +38,17 @@ class App {
       userController
     );
     this.routerV1.use('/user', userRoute.router);
+  }
+
+  configChatRoute() {
+    const chatService = new ChatService();
+    const chatController = new ChatController(chatService);
+    const chatRoute = new ChatRoute(
+      this.routerV1,
+      this.authMiddleware,
+      chatController
+    );
+    this.routerV1.use('/chat', chatRoute.router);
   }
 
   config() {
