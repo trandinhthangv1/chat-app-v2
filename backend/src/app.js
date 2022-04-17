@@ -10,6 +10,9 @@ import ChatService from './services/ChatService.js';
 import ChatController from './controllers/ChatController.js';
 import ChatRoute from './routes/v1/ChatRoute.js';
 import AuthMiddleware from './middlewares/AuthMiddleware.js';
+import MessageService from './services/MessageService.js';
+import MessageController from './controllers/MessageController.js';
+import MessageRoute from './routes/v1/MessageRoute.js';
 
 class App {
   constructor() {
@@ -19,6 +22,7 @@ class App {
     this.configAuthRoute();
     this.configUserRoute();
     this.configChatRoute();
+    this.configMessageRoute();
     this.config();
   }
 
@@ -49,6 +53,17 @@ class App {
       chatController
     );
     this.routerV1.use('/chat', chatRoute.router);
+  }
+
+  configMessageRoute() {
+    const messageService = new MessageService();
+    const messageController = new MessageController(messageService);
+    const messageRoute = new MessageRoute(
+      this.routerV1,
+      this.authMiddleware,
+      messageController
+    );
+    this.routerV1.use('/message', messageRoute.router);
   }
 
   config() {
