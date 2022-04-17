@@ -1,7 +1,7 @@
-// const ENDPOINT = 'https://vuichatchit.herokuapp.com';
-// const SERVER_API = 'https://vuichatchit.herokuapp.com/api/v1';
-const SERVER_API = 'http://localhost:3000/api/v1';
-const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'https://vuichatchit.herokuapp.com';
+const SERVER_API = 'https://vuichatchit.herokuapp.com/api/v1';
+// const SERVER_API = 'http://localhost:3000/api/v1';
+// const ENDPOINT = 'http://localhost:3000';
 
 const CLOUDINARY_API = 'https://api.cloudinary.com/v1_1';
 
