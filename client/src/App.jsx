@@ -6,7 +6,7 @@ import ChatPage from './pages/ChatPage';
 const App = () => {
   return (
     <Switch>
-      <Route path='/chat'>
+      <Route path='/chat' exact>
         <ChatPage />
       </Route>
       <Route path='/' exact>
